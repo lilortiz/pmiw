@@ -1,6 +1,6 @@
 // Lilo Ortiz - Ivan Romero - TP Final parte 2
 // 93502/9 y 119131/3 - Comisión 1
-// Link al video: https://youtu.be/s51Bz2wnxAQ
+// Link al video: 
 
 //variables
 var estado = 0;
@@ -8,6 +8,7 @@ var colorF, colorT, colorBoton1, colorBoton2;
 
 //arreglos
 let imagenes = [];
+let sonidos = [];
 let flechas = [];
 
 //funciones
@@ -35,9 +36,9 @@ function botonCrear(posX,posY,tamX,tamY,txt,tamanoTxt,colorTxt,colorN,colorH){
 }
 
 function preload(){
-  for (let cont=0; cont<11; cont++){
+ /* for (let cont=0; cont<11; cont++){
     imagenes[cont] = loadImage("data/img"+cont+".jpeg");
-  }
+  } */
   sonidoFondo = loadSound("data/audioFondo.mp3");
   
 }
