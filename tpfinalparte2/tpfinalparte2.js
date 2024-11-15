@@ -3,13 +3,12 @@
 // Link al video: 
 
 //variables
-var estado = 0;
-var colorF, colorT, colorBoton1, colorBoton2;
+let gameManager;
+let contador;
+let colorF, colorT, colorB1, colorB2;
 
 //arreglos
-let imagenes = [];
-let sonidos = [];
-let flechas = [];
+
 
 //funciones
 function botonB(posX, posY, ancho, alto){
@@ -33,37 +32,66 @@ function botonCrear(posX,posY,tamX,tamY,txt,tamanoTxt,colorTxt,colorN,colorH){
   textSize(tamanoTxt);
   text(txt, posX+(tamX/2), posY+(tamY/2));
   pop();
+
 }
 
 function preload(){
- /* for (let cont=0; cont<11; cont++){
-    imagenes[cont] = loadImage("data/img"+cont+".jpeg");
-  } */
   sonidoFondo = loadSound("data/audioFondo.mp3");
+  gameManager = new GameManager();
   
 }
 
 function setup() {
   createCanvas(640,480);
   
-  colorF = color(0,0,0);
+  //iniciar variables
+  contador = 0;
+  colorF = color(0,200,0);
   colorT = color(255,255,255);
-  colorBoton1 = color(169,102,53);
-  colorBoton2 = color(97,59,30);
+  colorB1 = color(100,100,100);
+  colorB2 = color(200,200,200);
 }
 
 
 function draw() {
   background(0);
-
-  if(estado === 2){
-    cuadroTexto(200, 30, 200, 80, "Desarrollo e imágenes", 34, colorF, colorT, "CENTER");
-    cuadroTexto(200, 110, 200, 40, "Lilo Ortiz - 93502/9", 20, colorF, colorT, "CENTER");
-    cuadroTexto(200, 150, 200, 40, "Ivan Romero - 119131/3", 20, colorF, colorT, "CENTER");
-    botonCrear(250, 400, 100, 40, "Atrás", 20, colorF, colorT, colorBoton1);
+  
+  if(contador === 0){
+    fill(255);
+    textAlign(CENTER,CENTER);
+    textSize(20);
+    text("Usá las flechas del teclado para evitar los disparos.", 320,100);
+    text("Cada flecha que te toque te sacará una vida.", 320,130);
+    text("Cuando te quedes sin vidas, perdés.", 320,160);
+    
+    botonCrear(270,250,100,40,"Comenzar",18,colorT,colorB1,colorB2);
+    botonCrear(270,300,100,40,"Créditos",18,colorT,colorB1,colorB2);
+    
+  } else if(contador === 1){
+    gameManager.dibujar();
+    
+  } else if(contador === 2){
+    fill(255);
+    textAlign(CENTER,CENTER);
+    textSize(20);
+    text("Créditos", 320,100);
+    text("Lilo Ortiz - 93502/9", 320,130);
+    text("Ivan Romero - 119131/3", 320,160);
+    
+    botonCrear(270,250,100,40,"Volver",18,colorT,colorB1,colorB2);
   }
 }
 
 function mousePressed(){
-  
+  if(botonB(270,250,100,40) & contador === 0 ){
+    contador = 1;
+  }else if(botonB(270,300,100,40) & contador ===0 ){
+    contador = 2;
+  }else if(botonB(270,250,100,40) & contador ===2 ){
+    contador = 0;
+  }
+}
+
+function keyPressed(){
+  gameManager.tecladoFlechas(keyCode)
 }
