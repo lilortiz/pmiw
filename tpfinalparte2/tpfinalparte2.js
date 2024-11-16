@@ -1,6 +1,6 @@
 // Lilo Ortiz - Ivan Romero - TP Final parte 2
 // 93502/9 y 119131/3 - Comisión 1
-// Link al video: 
+// Link al video: https://youtu.be/jNEpW_a3BI8
 
 //variables
 let gameManager;
@@ -93,13 +93,15 @@ function draw() {
     background(255,0,0);
     text("PERDISTE",320,240);
     botonCrear(270,250,100,40,"Menú",18,colorT,colorB1,colorB2);
-    
   }
 }
 
 function mousePressed(){
   if(botonB(270,250,100,40) & contador === 0 ){
     contador = 1;
+    if (!sonidoFondo.isPlaying()) {
+      sonidoFondo.loop(true);
+    }
   }else if(botonB(270,300,100,40) & contador ===0 ){
     contador = 2;
   }else if(botonB(270,250,100,40) & contador ===2 ){

@@ -5,6 +5,9 @@ class GameManager{
     this.arbustos =  [];
     this.cielo = loadImage("data/cielo.jpeg");
     this.estado = 1;
+    this.contador = 0;
+    this.iContador = millis();
+    this.fContador = 20000;
     
     for(let cont=0; cont<6; cont++){
       this.flechas[cont] = new Flecha(random(0,640), 30, (cont+2)*1.3);
@@ -21,6 +24,8 @@ class GameManager{
     fill(131,75,32);
     rect(0,400,640,80);
     
+    this.contador = millis() - this.iContador;
+    
     this.jugador.dibujar();
     for(let cont=0; cont<6; cont++){
       this.flechas[cont].movimiento();
@@ -32,13 +37,18 @@ class GameManager{
     }
     
     fill(0);
-    text("Colisiones:"+this.jugador.vidas,40,10);
+    text("Vidas:"+this.jugador.vidas,40,10);
+    text("Tiempo: " + (int((this.fContador - this.contador) / 1000)), 400,10);
     
     this.colisionFJ();
     
     if(this.jugador.hayVidas()){
       this.jugador.reiniciarVidas();
       this.perder();
+    }
+    
+    if(this.contador >= this.fContador){
+      this.ganar();
     }
     
     
@@ -72,6 +82,8 @@ class GameManager{
   reiniciarVidas(){
     this.estado = 1;
     this.jugador.reiniciarVidas();
+    this.contador = 0;
+    this.iContador = millis();
   }
   
 }
