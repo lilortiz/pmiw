@@ -69,6 +69,11 @@ function draw() {
     
   } else if(contador === 1){
     gameManager.dibujar();
+    if(gameManager.estado === 3){
+      contador = 3;
+    }else if(gameManager.estado === 4){
+      contador = 4;
+    }
     
   } else if(contador === 2){
     fill(255);
@@ -79,6 +84,16 @@ function draw() {
     text("Ivan Romero - 119131/3", 320,160);
     
     botonCrear(270,250,100,40,"Volver",18,colorT,colorB1,colorB2);
+  } else if(contador === 3){
+    background(255,0,0);
+    text("GANASTE",320,240);
+    botonCrear(270,250,100,40,"Menú",18,colorT,colorB1,colorB2);
+    
+  } else if(contador === 4){
+    background(255,0,0);
+    text("PERDISTE",320,240);
+    botonCrear(270,250,100,40,"Menú",18,colorT,colorB1,colorB2);
+    
   }
 }
 
@@ -89,6 +104,12 @@ function mousePressed(){
     contador = 2;
   }else if(botonB(270,250,100,40) & contador ===2 ){
     contador = 0;
+  }else if(botonB(270,250,100,40) & contador ===3 ){
+    contador = 0;
+    gameManager.reiniciarVidas();
+  }else if(botonB(270,250,100,40) & contador ===4 ){
+    contador = 0;
+    gameManager.reiniciarVidas();
   }
 }
 

@@ -4,6 +4,7 @@ class GameManager{
     this.flechas = [];
     this.arbustos =  [];
     this.cielo = loadImage("data/cielo.jpeg");
+    this.estado = 1;
     
     for(let cont=0; cont<6; cont++){
       this.flechas[cont] = new Flecha(random(0,640), 30, (cont+2)*1.3);
@@ -29,34 +30,48 @@ class GameManager{
       this.arbustos[cont].movimiento();
       this.arbustos[cont].dibujar();
     }
+    
+    fill(0);
+    text("Colisiones:"+this.jugador.vidas,40,10);
+    
+    this.colisionFJ();
+    
+    if(this.jugador.hayVidas()){
+      this.jugador.reiniciarVidas();
+      this.perder();
+    }
+    
+    
   }
   
   tecladoFlechas(keyCode){
     this.jugador.tecladoFlechas(keyCode)
   }
   
-  iniciar(){
-  
+  colisionFJ(){
+    for(let cont=0; cont<6; cont++){
+      let distancia = dist(this.jugador.posX+35,this.jugador.posY+45,this.flechas[cont].posX+10,this.flechas[cont].posY+65);
+      if(distancia < 30){
+        if(this.flechas[cont].colision === false){
+          this.flechas[cont].colisionCP();
+          this.jugador.vidas = this.jugador.vidas - 1;
+        }
+      }
+    }
   }
   
-  crearFlechas(){
-  
-  }
-  
-  crearPersonajes(){
-  
-  }
-  
-  comprobarCantFlechas(){
-  
-  }
   
   ganar(){
-  
+    this.estado = 3;
   }
   
   perder(){
+    this.estado = 4;
+  }
   
+  reiniciarVidas(){
+    this.estado = 1;
+    this.jugador.reiniciarVidas();
   }
   
 }

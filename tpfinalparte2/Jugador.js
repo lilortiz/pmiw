@@ -35,4 +35,8 @@ class Jugador{
     }
   }
   
+  reiniciarVidas(){
+    this.vidas = 3;
+  }
+  
 }
