@@ -16,10 +16,12 @@ class Flecha{
   }
   
   movimiento(){
+    //reinicia la posición
     if(this.posY > height+100){
       this.posY = -100;
       this.posX = random(0,640);
       this.colision = false;
+    //actualiza la posición
     }else{
       this.posY = this.posY + this.velocidad;
     }

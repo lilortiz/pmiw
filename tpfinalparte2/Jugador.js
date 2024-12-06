@@ -11,6 +11,7 @@ class Jugador{
     image(this.img, this.posX, this.posY, 70, 90);
   }
   
+  //revisa qué flecha se presionó y se mueve para un lado o el otro dependiendo de eso
   tecladoFlechas(keyCode){
     if(keyCode === LEFT_ARROW){
       this.movimientoI();
@@ -19,14 +20,17 @@ class Jugador{
     }
   }
   
+  //movimiento a la izquierda
   movimientoI(){
     this.posX = this.posX -20;
   }
 
+  //movimiento a la derecha
   movimientoD(){
     this.posX = this.posX +20;  
   }
   
+  //retorna falso si las vidas no se terminaron y verdadero si sí (quedó confuso el nombre)
   hayVidas(){
     if(this.vidas > 0){
       return false;

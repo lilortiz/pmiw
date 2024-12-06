@@ -11,11 +11,14 @@ class Boton{
   
   dibujar(){
     push();
+    //cambia el color de relleno según si el mouse está dentro del área del botón o no
     if(this.hOver(this.posX,this.posY,this.ancio,this.alto)){
       fill(this.colorH);
     }else{
       fill(this.colorN);
     }
+    
+    //dibuja el botón
     rect(this.posX,this.posY,this.ancho,this.alto);
     fill(0);
     textAlign(CENTER,CENTER);
@@ -24,6 +27,7 @@ class Boton{
     pop();
   }
   
+  //revisa sei el mouse está dentro del área del botón
   hOver(){
     if (mouseX > this.posX && mouseX < this.posX+this.ancho && mouseY > this.posY && mouseY < this.posY+this.alto) {
       return true;
