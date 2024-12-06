@@ -1,7 +1,8 @@
 // Lilo Ortiz - Ivan Romero - TP Final parte 1
 // 93502/9 y 119131/3 - Comisión 1
 // Link al video viejo: https://youtu.be/s51Bz2wnxAQ
-// Link al video nuevo: https://youtu.be/YrfBj2RY40Y
+// Link al video nuevo 1: https://youtu.be/YrfBj2RY40Y
+// Link al video nuevo 2: https://youtu.be/0N9QTfCDK3Q
 
 //variables
 var estado = 0;
