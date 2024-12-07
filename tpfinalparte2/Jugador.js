@@ -22,12 +22,20 @@ class Jugador{
   
   //movimiento a la izquierda
   movimientoI(){
-    this.posX = this.posX -20;
+    if (this.posX - 20 >= 0) {
+      this.posX = this.posX - 20;
+    } else {
+      this.posX = 0; 
+    }
   }
 
   //movimiento a la derecha
   movimientoD(){
-    this.posX = this.posX +20;  
+    if (this.posX + 70 + 20 <= 640) { 
+      this.posX = this.posX + 20;
+    } else {
+      this.posX = 640 - 70;  // Evita que salga por la derecha
+    }
   }
   
   //retorna falso si las vidas no se terminaron y verdadero si sí (quedó confuso el nombre)
